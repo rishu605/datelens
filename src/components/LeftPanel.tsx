@@ -9,7 +9,7 @@ const LeftPanel: React.FC = () => {
       <div style={{ flexBasis: '10%', flexGrow: 0, flexShrink: 0 }}>
         <SelectableDaysInput />
       </div>
-      <div className="bg-card rounded-xl shadow-md border border-border p-6 flex items-center justify-center" style={{ flexBasis: '30%', flexGrow: 0, flexShrink: 0 }}>
+      <div className="bg-card rounded-xl shadow-md border border-border p-6 flex items-center justify-center" style={{ flexBasis: '20%', flexGrow: 0, flexShrink: 0 }}>
         <SpecialDatesInput />
       </div>
       <div className="bg-card rounded-xl shadow-md border border-border p-6 flex-1 flex items-center justify-center" style={{ minHeight: 0 }}>
