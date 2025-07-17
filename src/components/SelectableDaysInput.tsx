@@ -1,17 +1,19 @@
 import React from "react";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 
 const SelectableDaysInput: React.FC = () => {
   return (
-    <div className="w-full flex flex-col items-center justify-center gap-2">
-      <label htmlFor="selectable-days" className="text-sm font-medium">Number of selectable days</label>
-      <input
+    <form className="flex flex-row items-center justify-between w-full px-4 py-2 bg-muted/40 rounded-lg shadow-sm">
+      <Label htmlFor="selectable-days" className="text-base font-semibold tracking-tight text-primary">Number of selectable days</Label>
+      <Input
         id="selectable-days"
         type="number"
         min={1}
-        className="w-24 rounded-md border border-border px-3 py-1.5 text-center text-base focus:outline-none focus:ring-2 focus:ring-primary"
+        className="w-40 text-center bg-background rounded-md shadow focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-150 hover:border-primary outline-none border-0"
         placeholder="e.g. 3"
       />
-    </div>
+    </form>
   );
 };
 
