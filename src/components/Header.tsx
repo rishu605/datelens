@@ -4,7 +4,7 @@ import { CalendarDays } from "lucide-react";
 
 const Header: React.FC = () => {
   return (
-    <header className="w-full border-b border-border bg-gradient-to-r from-background via-muted to-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-20 shadow-sm">
+    <header className="w-full border-b border-border bg-gradient-to-r from-background via-muted to-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 z-20 shadow-sm">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-4">
         <div className="flex items-center gap-3">
           <span className="inline-flex items-center justify-center rounded-full bg-primary/10 p-2">

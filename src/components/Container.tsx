@@ -4,13 +4,13 @@ import RightPanel from "@/components/RightPanel";
 
 const Container: React.FC = () => {
   return (
-    <div className="flex flex-col min-h-screen bg-gradient-to-br from-background via-muted/40 to-background/80">
-      <div className="flex-1 flex items-center justify-center">
-        <div className="flex h-full w-full gap-8 px-8 py-6 max-w-7xl mx-auto">
-          <div className="w-1/2 h-full bg-card rounded-xl shadow-md border border-border p-8 flex flex-col justify-start overflow-auto">
+    <div className="flex flex-col min-h-screen h-screen bg-gradient-to-br from-background via-muted/40 to-background/80 overflow-hidden">
+      <div className="flex-1 flex items-stretch justify-center min-h-0 px-4 py-6 md:px-8 md:py-10">
+        <div className="flex w-full gap-8 max-w-7xl mx-auto h-full min-h-0">
+          <div className="w-1/2 h-full flex flex-col overflow-auto min-h-0">
             <LeftPanel />
           </div>
-          <div className="w-1/2 h-full bg-card rounded-xl shadow-md border border-border p-8 flex flex-col justify-start overflow-auto">
+          <div className="w-1/2 h-full flex flex-col overflow-auto min-h-0">
             <RightPanel />
           </div>
         </div>
