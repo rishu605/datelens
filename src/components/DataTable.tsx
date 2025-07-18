@@ -146,9 +146,9 @@ const DataTable: React.FC<DataTableProps> = ({ data, selectedRange, scrollTableO
           />
         </div>
         {/* Only this div should scroll */}
-        <div className="flex-1 min-h-0 overflow-auto">
-          <div className="rounded-md border border-border bg-card">
-            <table className="w-full caption-bottom text-sm">
+        <div className="flex-1 min-h-0 flex flex-col">
+          <div className="flex-1 min-h-0 overflow-auto rounded-md border border-border bg-card flex flex-col">
+            <table className="w-full caption-bottom text-sm flex-1">
               <thead className="[&_tr]:border-b">
                 <tr className="sticky top-0 z-20 bg-card border-b shadow-sm transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted">
                   <th 
