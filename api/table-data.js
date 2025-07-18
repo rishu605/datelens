@@ -1,5 +1,4 @@
-// /api/table-data.js
-const { faker } = require('@faker-js/faker');
+import { faker } from '@faker-js/faker';
 
 const statuses = ['pending', 'completed', 'cancelled', 'processing'];
 
@@ -25,6 +24,6 @@ const mockTableData = Array.from({ length: 150 }, (_, i) => {
   };
 });
 
-module.exports = (req, res) => {
+export default function handler(req, res) {
   res.status(200).json(mockTableData);
-}; 
+} 
