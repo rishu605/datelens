@@ -10,7 +10,8 @@ function Calendar({ className, ...props }: CalendarProps) {
   return (
     <DayPicker
       showOutsideDays
-      className={cn("rounded-lg border bg-popover p-3 shadow-md", className)}
+      captionLayout="dropdown"
+      className={cn("rounded-lg p-0", className)}
       classNames={{
         months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
         month: "space-y-4",
