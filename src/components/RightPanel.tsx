@@ -38,7 +38,7 @@ const RightPanel: React.FC<RightPanelProps> = ({ selectedRange }) => {
         ) : error ? (
           <div className="flex items-center justify-center h-full text-destructive">{error}</div>
         ) : (
-          <DataTable data={tableData} selectedRange={selectedRange} scrollTableOnly />
+          <DataTable data={tableData} selectedRange={selectedRange} />
         )}
       </div>
     </div>
