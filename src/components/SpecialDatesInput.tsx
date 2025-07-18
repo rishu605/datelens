@@ -1,20 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Calendar } from "@/components/ui/calendar";
 import { X, CheckCircle, Check } from "lucide-react";
+import type { SpecialDatesInputProps, SpecialDate } from "@/types/interfaces";
 
-interface SpecialDate {
-  id: number;
-  date: Date | undefined;
-  text: string;
-  show: boolean;
-  editing?: boolean;
-}
-
-const SpecialDatesInput: React.FC = () => {
-  const [specialDates, setSpecialDates] = useState<SpecialDate[]>([]);
-  const [showPicker, setShowPicker] = useState<{ [id: number]: boolean }>({});
+const SpecialDatesInput: React.FC<SpecialDatesInputProps> = ({ specialDates, setSpecialDates }) => {
+  const [showPicker, setShowPicker] = React.useState<{ [id: number]: boolean }>({});
 
   const handleAdd = () => {
     setSpecialDates((prev) => [

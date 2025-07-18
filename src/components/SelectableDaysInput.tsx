@@ -1,11 +1,7 @@
 import React from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-
-interface SelectableDaysInputProps {
-  value: number;
-  onChange: (value: number) => void;
-}
+import type { SelectableDaysInputProps } from "@/types/interfaces";
 
 const SelectableDaysInput: React.FC<SelectableDaysInputProps> = ({ value, onChange }) => {
   return (

@@ -2,14 +2,9 @@ import React from "react";
 import SelectableDaysInput from "@/components/SelectableDaysInput";
 import SpecialDatesInput from "@/components/SpecialDatesInput";
 import CalendarCard from "@/components/CalendarCard";
-import type { DateRange } from "@/components/Container";
+import type { LeftPanelProps } from "@/types/interfaces";
 
-interface LeftPanelProps {
-  selectedRange: DateRange;
-  onSelectedRangeChange: (range: DateRange) => void;
-}
-
-const LeftPanel: React.FC<LeftPanelProps> = ({ selectedRange, onSelectedRangeChange }) => {
+const LeftPanel: React.FC<LeftPanelProps> = ({ selectedRange, onSelectedRangeChange, specialDates, setSpecialDates }) => {
   const [selectableDays, setSelectableDays] = React.useState<number>(7);
 
   // Convert selectedRange to selectedDates array for CalendarCard
@@ -36,13 +31,16 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ selectedRange, onSelectedRangeCha
     }
   };
 
+  // Only pass shown special dates to CalendarCard
+  const shownSpecialDates = specialDates.filter(d => d.show && d.date).map(d => d.date as Date);
+
   return (
     <div className="flex flex-col gap-6 h-full w-full overflow-auto">
       <div style={{ flexBasis: '10%', flexGrow: 0, flexShrink: 0 }}>
         <SelectableDaysInput value={selectableDays} onChange={setSelectableDays} />
       </div>
       <div className="bg-card rounded-xl shadow-md border border-border p-6 flex items-center justify-center" style={{ flexBasis: '20%', flexGrow: 0, flexShrink: 0 }}>
-        <SpecialDatesInput />
+        <SpecialDatesInput specialDates={specialDates} setSpecialDates={setSpecialDates} />
       </div>
       <div className="flex-1 flex h-full">
         <CalendarCard
@@ -50,6 +48,7 @@ const LeftPanel: React.FC<LeftPanelProps> = ({ selectedRange, onSelectedRangeCha
           selectedDates={selectedDates}
           onSelectedDatesChange={handleCalendarChange}
           selectedCount={selectedDates.length}
+          specialDates={shownSpecialDates}
         />
       </div>
     </div>

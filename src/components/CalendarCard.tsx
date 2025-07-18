@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { Calendar } from "@/components/ui/calendar";
+import type { CalendarCardProps } from "@/types/interfaces";
 
 const TIME_ZONES = [
   "UTC",
@@ -30,13 +31,6 @@ function getTimeZoneOffsetString(timeZone: string) {
   return `GMT${sign}${hours}:${minutes}`;
 }
 
-interface CalendarCardProps {
-  selectableDays: number;
-  selectedDates: Date[];
-  onSelectedDatesChange: (dates: Date[]) => void;
-  selectedCount: number;
-}
-
 function getDateArray(from: Date, to: Date): Date[] {
   const arr = [];
   let current = new Date(from);
@@ -56,7 +50,7 @@ function formatDateInTimeZone(date: Date, timeZone: string) {
   }).format(date);
 }
 
-const CalendarCard: React.FC<CalendarCardProps> = ({ selectableDays, selectedDates, onSelectedDatesChange, selectedCount }) => {
+const CalendarCard: React.FC<CalendarCardProps> = ({ selectableDays, selectedDates, onSelectedDatesChange, selectedCount, specialDates = [] }) => {
   const [showTooltip, setShowTooltip] = useState(false);
   const [timeZone, setTimeZone] = useState<string>(TIME_ZONES[0]);
   const tooltipTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -96,6 +90,16 @@ const CalendarCard: React.FC<CalendarCardProps> = ({ selectableDays, selectedDat
   const selectedRange = from && to ? { from, to } : undefined;
   const gmtString = getTimeZoneOffsetString(timeZone);
 
+  // Prepare modifiers for special dates
+  const specialDatesSet = new Set(specialDates.map(d => d.toDateString()));
+  const modifiers = {
+    special: (date: Date) => specialDatesSet.has(date.toDateString()),
+  };
+  const modifiersClassNames = {
+    special:
+      "bg-primary/10 border-2 border-primary text-primary font-bold relative after:content-[''] after:block after:w-1.5 after:h-1.5 after:bg-primary after:rounded-full after:absolute after:bottom-0.5 after:left-1/2 after:-translate-x-1/2",
+  };
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center relative gap-2 bg-card rounded-xl shadow-md border border-border p-6">
       <div className="w-full flex flex-col items-center mb-2">
@@ -129,6 +133,8 @@ const CalendarCard: React.FC<CalendarCardProps> = ({ selectableDays, selectedDat
         toDate={maxDate}
         disabled={{ before: today, after: maxDate }}
         className="p-4 mx-auto"
+        modifiers={modifiers}
+        modifiersClassNames={modifiersClassNames}
       />
       {selectedRange && (
         <div className="mt-3 text-xs text-muted-foreground font-medium text-center w-full">

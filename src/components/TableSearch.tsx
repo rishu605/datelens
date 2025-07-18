@@ -2,20 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-interface SearchFilters {
-  name: string;
-  date: string;
-  amountMin: string;
-  amountMax: string;
-  status: string;
-}
-
-interface TableSearchProps {
-  filters: SearchFilters;
-  onFiltersChange: (filters: SearchFilters) => void;
-  onClearFilters: () => void;
-}
+import type { SearchFilters, TableSearchProps } from "@/types/interfaces";
 
 const TableSearch: React.FC<TableSearchProps> = ({
   filters,

@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "@/components/DataTable";
-import type { DateRange } from "@/components/Container";
-
-interface RightPanelProps {
-  selectedRange: DateRange;
-}
+import type { RightPanelProps } from "@/types/interfaces";
 
 const RightPanel: React.FC<RightPanelProps> = ({ selectedRange }) => {
   const [tableData, setTableData] = useState<any[]>([]);
@@ -30,18 +26,19 @@ const RightPanel: React.FC<RightPanelProps> = ({ selectedRange }) => {
   }, []);
 
   return (
-    <div className="bg-card rounded-xl shadow-md border border-border p-8 w-full h-full flex flex-col min-h-[360px]">
+    <div className="bg-card rounded-xl shadow-md border border-border p-8 w-full flex flex-col min-h-[360px]">
       <div className="mb-6">
         <h2 className="text-2xl font-semibold text-foreground mb-2">Data Table</h2>
         <p className="text-muted-foreground">View and manage your data entries</p>
       </div>
-      <div className="flex-1 overflow-auto">
+      <div className="flex-1 min-h-0 flex flex-col">
+        {/* DataTable will render the Search & Filter section and the table. We'll make only the table scrollable. */}
         {loading ? (
           <div className="flex items-center justify-center h-full text-muted-foreground">Loading...</div>
         ) : error ? (
           <div className="flex items-center justify-center h-full text-destructive">{error}</div>
         ) : (
-          <DataTable data={tableData} selectedRange={selectedRange} />
+          <DataTable data={tableData} selectedRange={selectedRange} scrollTableOnly />
         )}
       </div>
     </div>
