@@ -134,6 +134,12 @@ const DataTable: React.FC<DataTableProps> = ({ data, selectedRange, scrollTableO
     }
   };
 
+  // Helper to format date as dd-mm-yyyy
+  function formatDateDMY(dateString: string) {
+    const [year, month, day] = dateString.split('-');
+    return `${day}-${month}-${year}`;
+  }
+
   // Layout: sticky search/filter, scrollable table
   if (scrollTableOnly) {
     return (
@@ -203,7 +209,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, selectedRange, scrollTableO
                         {row.name}
                       </td>
                       <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                        {row.date}
+                        {formatDateDMY(row.date)}
                       </td>
                       <td className="p-4 align-middle font-mono [&:has([role=checkbox])]:pr-0">
                         {row.amount}
@@ -298,7 +304,7 @@ const DataTable: React.FC<DataTableProps> = ({ data, selectedRange, scrollTableO
                       {row.name}
                     </td>
                     <td className="p-4 align-middle [&:has([role=checkbox])]:pr-0">
-                      {row.date}
+                      {formatDateDMY(row.date)}
                     </td>
                     <td className="p-4 align-middle font-mono [&:has([role=checkbox])]:pr-0">
                       {row.amount}
